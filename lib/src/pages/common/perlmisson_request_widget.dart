@@ -131,9 +131,17 @@ class _PermissionRequestWidgetState extends State<PermissionRequestWidget>
   void requestPermiss(Permission permission) async {
     //发起权限申请
     PermissionStatus status = await permission.request();
-
     //校验
     checkPermisson();
+  }
+
+  /// TODO 暂未使用
+  void requestPermissionList(List<Permission> list) async {
+    //多个权限申请
+    Map<Permission, PermissionStatus> statuses = await [
+    Permission.location,
+        Permission.storage,
+    ].request();
   }
 
   void closeApp() {
