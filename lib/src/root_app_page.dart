@@ -25,6 +25,7 @@ class _RootAPPState extends State{
   @override
   Widget build(BuildContext context) {
    return MaterialApp(
+     theme: ThemeData(primaryColor: Colors.lightBlueAccent),
      //不显示 debug 标签
      debugShowCheckedModeBanner: false,
      home: IndexPage(),

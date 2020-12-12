@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_ho/src/pages/common/protocol_model.dart';
 import 'package:flutter_ho/src/utils/log_utils.dart';
 import 'package:flutter_ho/src/utils/navigator_utils.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -23,7 +24,7 @@ class IndexPage extends StatefulWidget {
   }
 }
 
-class _IndexPageState extends State {
+class _IndexPageState extends State with ProtocolModel{
   List<String> _list = [
     "为您更好的体验应用，所以需要获取您的手机文件存储权限，以保存您的一些偏好设置",
     "您已拒绝权限，所以无法保存您的一些偏好设置，将无法使用APP",
@@ -77,7 +78,36 @@ class _IndexPageState extends State {
       dismissCallBack: (value){
         //插值
         LogUtils.e("权限申请结果 $value");
+
+        initDataNext();
       }
     );
+  }
+
+  //初始化工具类
+  void initDataNext() async {
+
+    bool isAgrement = await showProtocolFunction(context);
+
+    if(isAgrement){
+      //同意
+      LogUtils.e("同意协议");
+
+      next();
+    }else{
+      LogUtils.e("不同意");
+      closeApp();
+    }
+
+  }
+
+  void closeApp() {
+    SystemChannels.platform.invokeMethod("SystemNavigator.pop");
+  }
+
+  void next() {
+    //引导 页面
+    //倒计时页面
+    
   }
 }

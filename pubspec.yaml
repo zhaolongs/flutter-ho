@@ -19,6 +19,8 @@ dependencies:
   # 权限请求
   permission_handler: ^5.0.1+1
 
+  webview_flutter: ^1.0.7
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

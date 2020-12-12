@@ -18,5 +18,7 @@ Flutter 脚手架 快速开发模版
 
 *  2020 -12-08  第四天 [Flutter从0到1 权限申请 ](https://www.bilibili.com/video/BV1jK4y1L795/)
 *  2020 -12-09  第五天 [Flutter从0到1 权限申请 封装- iOS 权限申请适配](https://www.bilibili.com/video/BV1654y147Fr/)
-*  2020 -12-10  第六天 [NavigatorUtils 路由工具类-正在发布](https://www.bilibili.com/video/BV1VA41147WG/)
-*  2020 -12-11  第七天 [ LogUtils 日志工具类-正在发布](https://www.bilibili.com/video/BV1VA41147WG/)
+*  2020 -12-10  第六天 [NavigatorUtils 路由工具类](https://www.bilibili.com/video/BV1VA41147WG/)
+*  2020 -12-11  第七天 [ LogUtils 日志工具类](https://www.bilibili.com/video/BV1VA41147WG/)
+
+*  2020 -12-12  第八天 [Flutter从0到1 构建应用用户协议与隐私协议对话框的开发-第八讲](https://www.bilibili.com/video/BV1Bi4y1571R/)
