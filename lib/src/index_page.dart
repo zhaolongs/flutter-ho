@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ho/src/pages/common/protocol_model.dart';
 import 'package:flutter_ho/src/utils/log_utils.dart';
 import 'package:flutter_ho/src/utils/navigator_utils.dart';
+import 'package:flutter_ho/src/utils/sp_utils.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'pages/common/perlmisson_request_widget.dart';
@@ -35,6 +39,7 @@ class _IndexPageState extends State with ProtocolModel{
   @override
   void initState() {
     super.initState();
+
     Future.delayed(Duration.zero, () {
       initData();
     });
@@ -53,7 +58,7 @@ class _IndexPageState extends State with ProtocolModel{
     );
   }
 
-  void initData() {
+  void initData() async{
 
     //当前应用的运行环境
     //当App运行在release环境时
@@ -87,11 +92,28 @@ class _IndexPageState extends State with ProtocolModel{
   //初始化工具类
   void initDataNext() async {
 
-    bool isAgrement = await showProtocolFunction(context);
+
+    if(Platform.isIOS){
+      Directory libDire = await getLibraryDirectory();
+      LogUtils.e("libDire ${libDire.path}");
+    }
+    //初始化
+    await SPUtil.init();
+    //读取一下标识
+    bool isAgrement = await SPUtil.getBool("isAgrement");
+
+    LogUtils.e("isAgrement $isAgrement");
+
+    if(isAgrement==null||!isAgrement) {
+      isAgrement = await showProtocolFunction(context);
+    }
 
     if(isAgrement){
       //同意
       LogUtils.e("同意协议");
+
+      //保存一下标识
+      SPUtil.save("isAgrement", true);
 
       next();
     }else{
