@@ -23,6 +23,6 @@ Flutter 脚手架 快速开发模版
 
 *  2020 -12-12  第八天 [Flutter从0到1 构建应用用户协议与隐私协议对话框的开发-第八讲](https://www.bilibili.com/video/BV1Bi4y1571R/)
 *  2020 -12-13  第九天 [第九讲 Flutter从0到1 构建应用sp 数据持久化基本使用以及原理简述](https://www.bilibili.com/video/BV1Wt4y1k7py/)
-*  2020 -12-14  第十天 [ Flutter 左右滑动的引导页面构建 正在发布中]
-*  2020 -12-15  第十一天 [ Flutter倒讲时页面构建 正在发布中]
-*  2020 -12-16  第十二天 [ Flutter首页面底部导航栏构建 正在发布中]
+*  2020 -12-14  第十天 [ Flutter从0到1 编写倒计时页面 Timer 的基本使用-第十讲 ](https://www.bilibili.com/video/BV1pz4y1r7CS/)
+*  2020 -12-15  第十一天 [ Flutter从0到1 倒计时页面的视频播放-第十一讲 正在发布中]
+*  2020 -12-16  第十二天 [ Flutter从0到1首页面底部导航栏构建 正在发布中]

@@ -58,6 +58,7 @@ class NavigatorUtils {
     @required BuildContext context,
     @required Widget targPage,
     bool isReplace = false,
+    int startMills=400,
     bool opaque = false,
     Function(dynamic value) dismissCallBack,
   }) {
@@ -67,6 +68,7 @@ class NavigatorUtils {
           Animation<double> secondaryAnimation) {
         return targPage;
       },
+      transitionDuration: Duration(milliseconds: startMills),
       //动画
       transitionsBuilder: (BuildContext context, Animation<double> animation,
           Animation<double> secondaryAnimation, Widget child) {

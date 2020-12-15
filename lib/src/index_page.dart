@@ -11,6 +11,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'pages/common/perlmisson_request_widget.dart';
+import 'welcome_page.dart';
 
 /// 创建人： Created by zhaolong
 /// 创建时间：Created by  on 2020/12/7.
@@ -28,7 +29,7 @@ class IndexPage extends StatefulWidget {
   }
 }
 
-class _IndexPageState extends State with ProtocolModel{
+class _IndexPageState extends State with ProtocolModel {
   List<String> _list = [
     "为您更好的体验应用，所以需要获取您的手机文件存储权限，以保存您的一些偏好设置",
     "您已拒绝权限，所以无法保存您的一些偏好设置，将无法使用APP",
@@ -58,8 +59,7 @@ class _IndexPageState extends State with ProtocolModel{
     );
   }
 
-  void initData() async{
-
+  void initData() async {
     //当前应用的运行环境
     //当App运行在release环境时
     bool isLog = !bool.fromEnvironment("dart.vm.product");
@@ -69,31 +69,28 @@ class _IndexPageState extends State with ProtocolModel{
     LogUtils.e("权限申请");
     //权限申请
     NavigatorUtils.pushPageByFade(
-      context: context,
-      //目标页面
-      targPage: PermissionRequestWidget(
-        //所需要申请的权限
-        permission: Permission.camera,
-        //显示关闭应用按钮
-        isCloseApp: true,
-        //提示文案
-        permissionList: _list,
-      ),
-      //权限申请结果
-      dismissCallBack: (value){
-        //插值
-        LogUtils.e("权限申请结果 $value");
+        context: context,
+        //目标页面
+        targPage: PermissionRequestWidget(
+          //所需要申请的权限
+          permission: Permission.camera,
+          //显示关闭应用按钮
+          isCloseApp: true,
+          //提示文案
+          permissionList: _list,
+        ),
+        //权限申请结果
+        dismissCallBack: (value) {
+          //插值
+          LogUtils.e("权限申请结果 $value");
 
-        initDataNext();
-      }
-    );
+          initDataNext();
+        });
   }
 
   //初始化工具类
   void initDataNext() async {
-
-
-    if(Platform.isIOS){
+    if (Platform.isIOS) {
       Directory libDire = await getLibraryDirectory();
       LogUtils.e("libDire ${libDire.path}");
     }
@@ -104,11 +101,11 @@ class _IndexPageState extends State with ProtocolModel{
 
     LogUtils.e("isAgrement $isAgrement");
 
-    if(isAgrement==null||!isAgrement) {
+    if (isAgrement == null || !isAgrement) {
       isAgrement = await showProtocolFunction(context);
     }
 
-    if(isAgrement){
+    if (isAgrement) {
       //同意
       LogUtils.e("同意协议");
 
@@ -116,11 +113,10 @@ class _IndexPageState extends State with ProtocolModel{
       SPUtil.save("isAgrement", true);
 
       next();
-    }else{
+    } else {
       LogUtils.e("不同意");
       closeApp();
     }
-
   }
 
   void closeApp() {
@@ -130,6 +126,8 @@ class _IndexPageState extends State with ProtocolModel{
   void next() {
     //引导 页面
     //倒计时页面
-    
+
+    NavigatorUtils.pushPageByFade(
+        context: context, targPage: WelcomePage(), isReplace: true);
   }
 }
