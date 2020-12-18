@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ho/src/pages/play/video_details_widget.dart';
 import 'package:flutter_ho/src/utils/log_utils.dart';
 import 'package:video_player/video_player.dart';
 
@@ -13,28 +16,16 @@ import 'package:video_player/video_player.dart';
 /// 代码清单
 ///代码清单
 class ListViewItemWidget extends StatefulWidget {
+  final StreamController streamController;
+  final isScroll;
+
+  ListViewItemWidget({this.streamController, this.isScroll = false});
+
   @override
   _ListViewItemWidgetState createState() => _ListViewItemWidgetState();
 }
 
 class _ListViewItemWidgetState extends State<ListViewItemWidget> {
-  //创建视频播放控制器
-  VideoPlayerController _controller;
-
-  bool _isPlay = false;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _controller = VideoPlayerController.asset('assets/video/list_item.mp4')
-      ..initialize().then((_) {
-        LogUtils.e("加载完成");
-        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-        setState(() {});
-      });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -47,62 +38,30 @@ class _ListViewItemWidgetState extends State<ListViewItemWidget> {
           Row(
             children: [Icon(Icons.one_k), Text("早起的年轻人")],
           ),
-          SizedBox(height: 8,),
+          SizedBox(
+            height: 8,
+          ),
           Container(
             height: 220,
-            child: Stack(
-              children: [
-                //第一层的视频
-                Positioned.fill(
-                  child: GestureDetector(
-                    onTap: (){
-                      _controller.pause();
-                      _isPlay=false;
-                      setState(() {
-
-                      });
-                    },
-                    child: AspectRatio(
-                      aspectRatio: _controller.value.aspectRatio,
-                      child: VideoPlayer(_controller),
-                    ),
-                  ),
-                ),
-
-                //第二层的控制按钮
-                buildControllerWidget()
-              ],
-            ),
+            child: buildVideoWidget(),
           )
         ],
       ),
     );
   }
 
-  Widget buildControllerWidget() {
-    if (_isPlay) {
-      //如果正在播放
-      return Container();
-    }
-    return Positioned.fill(
-      child: Container(
-        //0.3 的蓝色透明度
-        color: Colors.blueGrey.withOpacity(0.5),
-        //图标
-        child: GestureDetector(
-          onTap: () {
-            _isPlay=true;
-            _controller.play();
-            setState(() {
-
-            });
-          },
-          child: Icon(
-            Icons.play_circle_fill,
-            size: 44,
-          ),
+  Widget buildVideoWidget() {
+    if (widget.isScroll) {
+      return Container(
+        width: MediaQuery.of(context).size.width,
+        child: Image.asset(
+          "assets/images/welcome.png",
+          fit: BoxFit.fitWidth,
         ),
-      ),
+      );
+    }
+    return VideoDetailsWidget(
+      streamController: widget.streamController,
     );
   }
 }

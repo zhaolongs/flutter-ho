@@ -26,3 +26,4 @@ Flutter 脚手架 快速开发模版
 *  2020 -12-15  第十一天 [ 倒计时页面的视频播放背景 ](https://www.bilibili.com/video/BV1D64y1f7re/)
 *  2020 -12-16  第十二天 [ 首页面底部菜单栏切换页面](https://www.bilibili.com/video/BV1fh411Z7bX/)
 *  2020 -12-17  第十三天 [ ListView懒加载构建视频列表、VideoPlayer实现视频播放](https://www.bilibili.com/video/BV16T4y1M7wh/)
+*  2020 -12-18  第十四天 [ 多订阅流异步通信实现列表视频的单一播放](https://www.bilibili.com/video/BV16T4y1M7wh/)
