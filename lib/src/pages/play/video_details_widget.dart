@@ -12,8 +12,8 @@ import 'package:video_player/video_player.dart';
 /// 可关注公众号：我的大前端生涯   获取最新技术分享
 /// 可关注网易云课堂：https://study.163.com/instructor/1021406098.htm
 /// 可关注博客：https://blog.csdn.net/zl18603543572
-/// 
-/// 代码清单 
+///
+/// 代码清单
 ///代码清单
 class VideoDetailsWidget extends StatefulWidget {
   final StreamController streamController;
@@ -21,10 +21,10 @@ class VideoDetailsWidget extends StatefulWidget {
   VideoDetailsWidget({this.streamController});
 
   @override
-  _VideoDetailsWidgetState createState() => _VideoDetailsWidgetState();
+  _VideoDetails2WidgetState createState() => _VideoDetails2WidgetState();
 }
 
-class _VideoDetailsWidgetState extends State<VideoDetailsWidget> {
+class _VideoDetails2WidgetState extends State<VideoDetailsWidget> {
   //创建视频播放控制器
   VideoPlayerController _controller;
   bool _isPlay = false;
@@ -97,6 +97,17 @@ class _VideoDetailsWidgetState extends State<VideoDetailsWidget> {
             if (widget.streamController != null) {
               widget.streamController.add(_controller);
             }
+
+            //当前视频 播放的位置
+            Duration postion = _controller.value.position;
+            //视频的总长度
+            Duration duration = _controller.value.duration;
+
+            if(postion==duration){
+              //播放完毕 再点击播放时，当播放位置滑动到开始位置
+              _controller.seekTo(Duration.zero);
+            }
+            //开始播放
             _controller.play();
 
             setState(() {});

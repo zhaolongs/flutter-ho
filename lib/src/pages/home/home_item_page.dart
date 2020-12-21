@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ho/src/utils/log_utils.dart';
 import 'package:video_player/video_player.dart';
 
+import 'list_item2_widget.dart';
 import 'list_item_widget.dart';
 
 /// 创建人： Created by zhaolong
@@ -54,6 +55,7 @@ class _HomeItemPageState extends State<HomeItemPage> {
   }
 
   bool _isScroll = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,19 +64,17 @@ class _HomeItemPageState extends State<HomeItemPage> {
       ),
       backgroundColor: Colors.grey[200],
       body: NotificationListener(
-        onNotification: (ScrollNotification notification){
+        onNotification: (ScrollNotification notification) {
           Type runtimType = notification.runtimeType;
 
           LogUtils.e("runtimType $runtimType");
-          if(runtimType == ScrollStartNotification){
+          if (runtimType == ScrollStartNotification) {
             LogUtils.e("开始滑动");
             _isScroll = true;
-          }else if (runtimType == ScrollEndNotification){
+          } else if (runtimType == ScrollEndNotification) {
             LogUtils.e("结束滑动");
             _isScroll = false;
-            setState(() {
-
-            });
+            setState(() {});
           }
 
           return false;
@@ -84,13 +84,24 @@ class _HomeItemPageState extends State<HomeItemPage> {
           cacheExtent: 0,
           itemCount: 100,
           itemBuilder: (BuildContext context, int index) {
-            return ListViewItemWidget(
-              isScroll :_isScroll,
-              streamController: _streamController,
-            );
+            return buildListItemFungion();
           },
         ),
       ),
     );
+  }
+
+  Widget buildListItemFungion() {
+    if(widget.flag==1){
+      return ListViewItemWidget(
+        isScroll: _isScroll,
+        streamController: _streamController,
+      );
+    }else{
+      return ListViewItem2Widget(
+        isScroll: _isScroll,
+        streamController: _streamController,
+      );
+    }
   }
 }
