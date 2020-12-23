@@ -64,7 +64,7 @@ class _VideoDetailsWidgetState extends State<VideoDetails2Widget> {
   void dispose() {
     _controller.dispose();
     _streamController.close();
-    if(_timer.isActive){
+    if (_timer.isActive) {
       _timer.cancel();
     }
     super.dispose();
@@ -100,7 +100,9 @@ class _VideoDetailsWidgetState extends State<VideoDetails2Widget> {
   bool _isFirst = true;
 
   Widget buildControllerWidget() {
+    //动画过渡透明度组件
     return AnimatedOpacity(
+      //过渡时间
       duration: Duration(milliseconds: 1200),
       opacity: _opacity,
       child: GestureDetector(
@@ -117,30 +119,20 @@ class _VideoDetailsWidgetState extends State<VideoDetails2Widget> {
         },
         child: Stack(
           children: [
+            //层叠布局中的填充
             Positioned.fill(
               child: Container(
+                //底部内边距
                 padding: EdgeInsets.only(bottom: 40),
                 //0.3 的蓝色透明度
                 color: Colors.blueGrey.withOpacity(0.5),
-                //图标
+                //手势监听
                 child: GestureDetector(
-                  onTap: () {
-                    if (_controller.value.isPlaying) {
-                      stopVideo();
-                      if (_timer.isActive) {
-                        _timer.cancel();
-                      }
-                    } else {
-                      startPlayVide();
-                      //创建一个延时执行的定时 器
-                      _timer = Timer(Duration(seconds: 3), () {
-                        setState(() {
-                          _opacity = 0.0;
-                        });
-                      });
-                    }
-                  },
+                  //手指抬起后的回调
+                  onTap: controllerClickFunction,
+                  //层叠布局
                   child: Stack(
+                    //子Widget居中对齐
                     alignment: Alignment.center,
                     children: [
                       ClipOval(
@@ -193,6 +185,31 @@ class _VideoDetailsWidgetState extends State<VideoDetails2Widget> {
         ),
       ),
     );
+  }
+
+  ///控制层点击事件
+  void controllerClickFunction() {
+    //获取当前视频是否在播放
+    bool isPlaying = _controller.value.isPlaying;
+    if (isPlaying) {
+      //如果视频正在播放中 再次点击停止播放
+      stopVideo();
+      //停止播放状态下 取消隐藏的计时器
+      if (_timer.isActive) {
+        _timer.cancel();
+      }
+    } else {
+      //开始播放视频
+      startPlayVide();
+      //创建一个延时执行的定时器
+      _timer = Timer(Duration(seconds: 3), () {
+        //3秒后将控制层的透明度设置为0
+        //控制层还在
+        setState(() {
+          _opacity = 0.0;
+        });
+      });
+    }
   }
 
   ///开始播放视频
@@ -304,8 +321,11 @@ class _VideoDetailsWidgetState extends State<VideoDetails2Widget> {
     return "$mStr:$sStr";
   }
 
+  ///停止播放视频
   void stopVideo() {
+    //视频播放控制器停止播放
     _controller.pause();
+    //变量标识
     _isPlay = false;
   }
 }

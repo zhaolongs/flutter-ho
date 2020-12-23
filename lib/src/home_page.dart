@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ho/src/pages/home/home_item_page.dart';
 
+import 'pages/mine/mine_main_page.dart';
+
 /// 创建人： Created by zhaolong
 /// 创建时间：Created by  on 2020/12/14.
 ///
@@ -36,7 +38,8 @@ class _HomePageState extends State<HomePage> {
             HomeItemPage(1),
             HomeItemPage(2),
             HomeItemPage(3),
-            HomeItemPage(4),
+            //个人中心页面
+            MineMainPage(),
           ],
         ),
       ),

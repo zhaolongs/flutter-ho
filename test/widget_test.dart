@@ -5,17 +5,26 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'dart:io';
+import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:flutter_ho/main.dart';
-import 'package:path_provider/path_provider.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
 
 
+    //通过毫秒定义
+    Duration duration = new Duration(milliseconds: 2000);
+    //通过秒定义
+    Duration duration2 = new Duration(seconds: 2);
+
+    //创建计时器
+    Timer timer = Timer(duration, (){
+      //延时回调
+    });
+
+    Future.delayed(duration,(){
+      //延时回调
+    });
   });
 }

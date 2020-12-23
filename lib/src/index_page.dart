@@ -10,6 +10,7 @@ import 'package:flutter_ho/src/utils/sp_utils.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import 'first_guild_page.dart';
 import 'pages/common/perlmisson_request_widget.dart';
 import 'welcome_page.dart';
 
@@ -123,11 +124,21 @@ class _IndexPageState extends State with ProtocolModel {
     SystemChannels.platform.invokeMethod("SystemNavigator.pop");
   }
 
-  void next() {
-    //引导 页面
-    //倒计时页面
+  void next() async {
 
-    NavigatorUtils.pushPageByFade(
-        context: context, targPage: WelcomePage(), isReplace: true);
+    //判断是否第一次安装应用
+    bool isFirstInstall = await  SPUtil.getBool("flutter_ho_isFirst");
+
+    if(isFirstInstall==null){
+      //如果为null 则是第一次安装应用
+      //引导 页面
+      NavigatorUtils.pushPageByFade(
+          context: context, targPage: FirstGuildPage(), isReplace: true);
+    }else{
+      //倒计时页面
+      NavigatorUtils.pushPageByFade(
+          context: context, targPage: WelcomePage(), isReplace: true);
+    }
+
   }
 }
