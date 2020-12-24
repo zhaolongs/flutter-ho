@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ho/src/utils/log_utils.dart';
 import 'package:flutter_ho/src/utils/navigator_utils.dart';
+import 'package:flutter_ho/src/utils/sp_utils.dart';
 
 import 'home_page.dart';
 
@@ -59,6 +60,7 @@ class _FirstGuildPageState extends State<FirstGuildPage> {
               child: Text("去首页"),
               onPressed: () {
                 LogUtils.e("点击了去首页面");
+                SPUtil.save("flutter_ho_isFirst",true);
                 NavigatorUtils.pushPageByFade(
                   context: context,
                   targPage: HomePage(),
