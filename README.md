@@ -27,3 +27,15 @@ Flutter 脚手架 快速开发模版
 *  2020 -12-16  第十二天 [ 首页面底部菜单栏切换页面](https://www.bilibili.com/video/BV1fh411Z7bX/)
 *  2020 -12-17  第十三天 [ ListView懒加载构建视频列表、VideoPlayer实现视频播放](https://www.bilibili.com/video/BV16T4y1M7wh/)
 *  2020 -12-18  第十四天 [ 多订阅流异步通信实现列表视频的单一播放](https://www.bilibili.com/video/BV16T4y1M7wh/)
+
+*  2020 -12-19  第十五天 [Flutter从0到1 列表视频的重复播放问题解决 第十五讲](https://www.bilibili.com/video/BV1wz4y1r7QL/)
+*  2020 -12-20  第十六天 [ 视频播放进度监听以及滑动条的结合使用 第十六讲](https://www.bilibili.com/video/BV1va4y1H7Po/)
+*  2020 -12-21  第十七天 [视频播放时间的实时更新以及播放按钮的动态显示](https://www.bilibili.com/video/BV1ea4y1H7zP/)
+*  2020 -12-22  第十八天 [播放按钮的动态显示以及结合StreamBuilder优化-第十八讲](https://www.bilibili.com/video/BV1op4y1z7TC/)
+*  2020 -12-23 第十九天 [App左右滑动的引导页面功能-第十九讲](https://www.bilibili.com/video/BV1aK4y1V7Sw/)
+
+
+*  2020 -12-24  第二十天 [App个人中心页面的登录按钮Hero动画过渡](https://www.bilibili.com/video/BV1ez4y1r7da/)
+*  2020 -12-25  第二十一天 [App 气泡登录页面 第一部分 第21讲](https://www.bilibili.com/video/BV1iA411p7jy/)
+*  2020 -12-26  第二十二天 []()
+*  2020 -12-27  第二十三天 []()
