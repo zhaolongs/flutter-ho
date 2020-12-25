@@ -29,7 +29,8 @@ dependencies:
   path_provider: ^1.6.24
   #视频播放
   video_player: ^1.0.1
-
+  #toast 消息提示小弹框
+  fluttertoast: ^7.0.1+1
 
 dev_dependencies:
   flutter_test:
