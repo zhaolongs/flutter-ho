@@ -2,6 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ho/src/bean/bean_user.dart';
+import 'package:flutter_ho/src/net/dio_utils.dart';
+import 'package:flutter_ho/src/pages/common/controller.dart';
+import 'package:flutter_ho/src/pages/common/user_helper.dart';
 import 'package:flutter_ho/src/utils/log_utils.dart';
 import 'package:flutter_ho/src/utils/toast_utils.dart';
 
@@ -25,11 +29,13 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   //密码输入框焦点控制
   FocusNode _passwordFocusNode = new FocusNode();
+
   //手机号输入框焦点控制
   FocusNode _userNameFocusNode = new FocusNode();
 
   //手机号输入框控制器
   TextEditingController _userNameEditController = new TextEditingController();
+
   //密码输入框控制器
   TextEditingController _userPasswordEditController =
       new TextEditingController();
@@ -39,10 +45,9 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     //输入框预设内容
-    _userNameEditController.text= "12345678901";
+    _userNameEditController.text = "13387987456";
   }
 
   @override
@@ -54,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
           height: double.infinity,
           //点击空白区域 隐藏键盘
           child: GestureDetector(
-            onTap: (){
+            onTap: () {
               _userNameFocusNode.unfocus();
               _passwordFocusNode.unfocus();
             },
@@ -63,105 +68,122 @@ class _LoginPageState extends State<LoginPage> {
                 //第一层 背景
                 buildBackgroundWidget(),
                 //第二层 气泡
-                Positioned.fill(child: BubbleWidget(),),
+                Positioned.fill(
+                  child: BubbleWidget(),
+                ),
                 //第三层 高斯模糊
                 buildFliterWidget(),
                 //第四层 logo
                 buildLogoWidget(),
                 //第五层来个输入层
-                //buildInputWidget(context),
+                buildInputWidget(context),
                 //第六层 关闭按钮
-                //buildCloseWidget(context)
+                buildCloseWidget(context)
               ],
             ),
           )),
     );
   }
 
-
-
-
-
-
-
-
   Positioned buildInputWidget(BuildContext context) {
     return Positioned(
-                bottom: 60,
-                right: 60,
-                left: 60,
-                child: Column(
-                  children: [
-                    //手机号
-                    TextFieldWidget(
-                      hintText: "手机号",
-                      submit: (value) {
-                        if(value.length!=11){
-                          ToastUtils.showToast("请输入11位手机号");
-                          FocusScope.of(context).requestFocus(_userNameFocusNode);
-                          return;
-                        }
-                        _userNameFocusNode.unfocus();
-                        FocusScope.of(context).requestFocus(_passwordFocusNode);
-                      },
-                      focusNode: _userNameFocusNode,
-                      prefixIconData: Icons.phone,
-                      controller: _userNameEditController,
-                      obscureText: false,
-                    ),
-                    SizedBox(height: 40,),
-                    //密码
+      bottom: 60,
+      right: 60,
+      left: 60,
+      child: Column(
+        children: [
+          //手机号
+          TextFieldWidget(
+            hintText: "手机号",
+            submit: (value) {
+              if (value.length != 11) {
+                ToastUtils.showToast("请输入11位手机号");
+                //手机号输入框重新获取焦点
+                FocusScope.of(context).requestFocus(_userNameFocusNode);
+                return;
+              }
+              //手机号输入框失去焦点
+              _userNameFocusNode.unfocus();
+              //密码输入框获取焦点
+              FocusScope.of(context).requestFocus(_passwordFocusNode);
+            },
+            focusNode: _userNameFocusNode,
+            prefixIconData: Icons.phone,
+            controller: _userNameEditController,
+            obscureText: false,
+          ),
+          SizedBox(
+            height: 40,
+          ),
+          //密码
 
-                    TextFieldWidget(
-                      hintText: "密码",
-                      submit: (value) {},
-                      focusNode: _passwordFocusNode,
-                      prefixIconData: Icons.lock_open_outlined,
-                      suffixIconData: _passwordShow?Icons.visibility:Icons.visibility_off,
-                      obscureText: _passwordShow,
-                      controller: _userPasswordEditController,
-                      onTap: (){
-                        setState(() {
-                          _passwordShow=!_passwordShow;
-                        });
-                      },
-                    ),
-                    SizedBox(height: 40,),
+          TextFieldWidget(
+            hintText: "密码",
+            submit: (value) {
+              if (value.length < 6) {
+                ToastUtils.showToast("请输入6位以上密码");
+                //密码输入框获取焦点
+                FocusScope.of(context).requestFocus(_passwordFocusNode);
+                return;
+              }
+              //手机号输入框失去焦点
+              _userNameFocusNode.unfocus();
+              //密码输入框失去焦点
+              _passwordFocusNode.unfocus();
+              submitFunction();
+            },
+            focusNode: _passwordFocusNode,
+            prefixIconData: Icons.lock_open_outlined,
+            suffixIconData:
+                _passwordShow ? Icons.visibility : Icons.visibility_off,
+            obscureText: _passwordShow,
+            controller: _userPasswordEditController,
+            onTap: () {
+              //设置密码输入框输入内容可见与不可见
+              setState(() {
+                _passwordShow = !_passwordShow;
+              });
+            },
+          ),
+          SizedBox(
+            height: 40,
+          ),
 
-                    //登录
-                    Container(
-                      width: double.infinity,
-                      height: 44,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          LogUtils.e("点击了登录");
-                        },
-                        child: Text(
-                          "登录",
-                          style: TextStyle(fontSize: 18),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    //注册
-                    Container(
-                      width: double.infinity,
-                      height: 44,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          LogUtils.e("点击了注册");
-                        },
-                        child: Text(
-                          "注册",
-                          style: TextStyle(fontSize: 18),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              );
+          //登录
+          Container(
+            width: double.infinity,
+            height: 44,
+            child: ElevatedButton(
+              onPressed: () {
+                LogUtils.e("点击了登录");
+                submitFunction();
+              },
+              child: Text(
+                "登录",
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          //注册
+          Container(
+            width: double.infinity,
+            height: 44,
+            child: ElevatedButton(
+              onPressed: () {
+                LogUtils.e("点击了注册");
+              },
+              child: Text(
+                "注册",
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   ///第六层 关闭按钮
@@ -247,5 +269,52 @@ class _LoginPageState extends State<LoginPage> {
         ],
       ),
     );
+  }
+
+  ///登录功能
+  void submitFunction() async {
+    //获取用户名
+    String userName = _userNameEditController.text;
+    //获取密码
+    String password = _userPasswordEditController.text;
+
+    if (userName.trim().length != 11) {
+      ToastUtils.showToast("请输入11位手机号");
+      return;
+    }
+    if (password.trim().length < 6) {
+      ToastUtils.showToast("请输入6位以上密码");
+      return;
+    }
+
+    Map<String, dynamic> map = {
+      "mobile": userName,
+      "password": password,
+    };
+
+    //网络请求 发起 post 请求
+    ResponseInfo responseInfo = await DioUtils.instance.postRequest(
+      //请求地址
+      url: HttpHelper.login,
+      //请求参数
+      formDataMap: map,
+    );
+
+    //响应成功
+    if (responseInfo.success) {
+      //解析数据
+      UserBean userBean = UserBean.fromMap(responseInfo.data);
+      //内存保存数据
+      UserHepler.getInstance.userBean = userBean;
+      //提示框
+      ToastUtils.showToast("登录成功");
+      //关闭当前页面
+      Navigator.of(context).pop(true);
+      //发送消息更新我的页面显示内容
+      loginStreamController.add(0);
+    } else {
+      //登录失败页面小提示
+      ToastUtils.showToast("${responseInfo.message}");
+    }
   }
 }

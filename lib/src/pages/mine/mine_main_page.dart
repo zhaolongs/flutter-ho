@@ -1,6 +1,8 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_ho/src/pages/common/controller.dart';
 import 'package:flutter_ho/src/pages/common/user_helper.dart';
 
 import 'mine_login_page.dart';
@@ -22,6 +24,14 @@ class MineMainPage extends StatefulWidget {
 
 class _MineMainPageState extends State<MineMainPage> {
   @override
+  void initState() {
+    super.initState();
+    loginStreamController.stream.listen((event) {
+      setState(() {});
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AnnotatedRegion(
       value: SystemUiOverlayStyle(
@@ -41,5 +51,11 @@ class _MineMainPageState extends State<MineMainPage> {
       //构建未登录的页面
       return MineNoLoginPage();
     }
+  }
+
+  @override
+  void dispose() {
+    loginStreamController.close();
+    super.dispose();
   }
 }

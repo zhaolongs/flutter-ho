@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ho/src/pages/login/login_page.dart';
+import 'package:flutter_ho/src/utils/log_utils.dart';
 import 'package:flutter_ho/src/utils/navigator_utils.dart';
 
 /// 创建人： Created by zhaolong
@@ -46,10 +47,15 @@ class _MineNoLoginPageState extends State<MineNoLoginPage> {
                 isDown = false;
               });
               NavigatorUtils.pushPageByFade(
-                startMills: 1200,
-                context: context,
-                targPage: LoginPage(),
-              );
+                  startMills: 1200,
+                  context: context,
+                  targPage: LoginPage(),
+                  dismissCallBack: (value) {
+                    if (value != null) {
+                      LogUtils.e("刷新页面");
+                      setState(() {});
+                    }
+                  });
             },
             child: buildHero(),
           )

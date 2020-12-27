@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ho/src/pages/play/video_details_widget.dart';
-import 'package:flutter_ho/src/utils/log_utils.dart';
-import 'package:video_player/video_player.dart';
 
 /// 创建人： Created by zhaolong
 /// 创建时间：Created by  on 2020/12/14.
