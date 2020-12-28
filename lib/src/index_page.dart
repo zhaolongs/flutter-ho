@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ho/src/pages/common/protocol_model.dart';
+import 'package:flutter_ho/src/pages/common/user_helper.dart';
 import 'package:flutter_ho/src/utils/log_utils.dart';
 import 'package:flutter_ho/src/utils/navigator_utils.dart';
 import 'package:flutter_ho/src/utils/sp_utils.dart';
@@ -101,6 +102,8 @@ class _IndexPageState extends State with ProtocolModel {
     bool isAgrement = await SPUtil.getBool("isAgrement");
 
     LogUtils.e("isAgrement $isAgrement");
+
+    UserHepler.getInstance.init();
 
     if (isAgrement == null || !isAgrement) {
       isAgrement = await showProtocolFunction(context);

@@ -293,13 +293,19 @@ class _LoginPageState extends State<LoginPage> {
     };
 
     //网络请求 发起 post 请求
-    ResponseInfo responseInfo = await DioUtils.instance.postRequest(
-      //请求地址
-      url: HttpHelper.login,
-      //请求参数
-      formDataMap: map,
-    );
-
+    // ResponseInfo responseInfo = await DioUtils.instance.postRequest(
+    //   //请求地址
+    //   url: HttpHelper.login,
+    //   //请求参数
+    //   formDataMap: map,
+    // );
+    //模拟登录成功
+    ResponseInfo responseInfo = await Future.delayed(Duration(milliseconds: 1000),(){
+      return ResponseInfo(data: {
+        "userName":"测试数据",
+        "age":22,
+      });
+    });
     //响应成功
     if (responseInfo.success) {
       //解析数据

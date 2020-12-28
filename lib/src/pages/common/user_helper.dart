@@ -24,6 +24,24 @@ class UserHepler {
 
   set userBean(UserBean bean) {
     _userBean = bean;
-    SPUtil.save("user_bean", _userBean);
+    SPUtil.saveObject("user_bean", _userBean);
   }
+
+  get userBean=>_userBean;
+
+
+  void init(){
+    Map<String, dynamic> map = SPUtil.getObject("user_bean");
+    if(map!=null){
+      //加载缓存
+      _userBean= UserBean.fromMap(map);
+
+    }
+  }
+
+  void clear(){
+    _userBean = null;
+    SPUtil.remove("user_bean");
+  }
+
 }

@@ -20,7 +20,7 @@ class UserBean {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> map = new Map<String, dynamic>();
     map["userName"] = this.userName;
-    map["userAge"] = this.userAge;
+    map["age"] = this.userAge;
     return map;
   }
 }
