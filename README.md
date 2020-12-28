@@ -39,3 +39,5 @@ Flutter 脚手架 快速开发模版
 *  2020 -12-25  第二十一天 [App 气泡登录页面 第一部分 第21讲](https://www.bilibili.com/video/BV1iA411p7jy/)
 *  2020 -12-26  第二十二天 [Flutter从0到1开发App 登录页面 按钮与输入框 第二部分 第22讲](https://www.bilibili.com/video/BV1k5411H7Nt/)
 *  2020 -12-27  第二十三天 [Flutter从0到1开发App用户登录Http网络请求-第23讲](https://www.bilibili.com/video/BV1kK4y1V72F/)
+
+*  2020 -12-28  第二十四天 [Flutter从0到1 APP开发 保存用户登录状态 思维决定方式-第24讲](https://www.bilibili.com/video/BV1zt4y167oo/)
