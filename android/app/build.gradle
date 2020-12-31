@@ -32,21 +32,43 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+
         applicationId "com.studyyoun.flutter_ho"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        ndk{
+            abiFilters "armeabi-v7a","armeabi-v8a","armeabi"
+        }
+    }
+
+    signingConfigs{
+        app_key{
+            storeFile file("test.jks")
+            storePassword "123456"
+            keyAlias "test"
+            keyPassword "123456"
+        }
+
+        app_debug_key{
+            storeFile file("test.jks")
+            storePassword "123456"
+            keyAlias "test"
+            keyPassword "123456"
+        }
     }
 
     buildTypes {
+        debug{
+            signingConfig signingConfigs.app_debug_key
+        }
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+             signingConfig signingConfigs.app_key
         }
     }
+
+
 }
 
 flutter {

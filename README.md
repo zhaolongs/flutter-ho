@@ -42,3 +42,5 @@ Flutter 脚手架 快速开发模版
 
 *  2020 -12-28  第二十四天 [Flutter从0到1 APP开发 保存用户登录状态 思维决定方式-第24讲](https://www.bilibili.com/video/BV1zt4y167oo/)
 *  2020 -12-29  第二十五天 [Flutter从0到1 App开发 升级对话框以及下载安装功能-第25讲](https://www.bilibili.com/video/BV1ba4y1p7xL/)
+*  2020 -12-30  第二十六天 [Flutter从0到1 App打包发布 Android打包基本配置-第26讲](https://www.bilibili.com/video/BV1PK4y157B3/)
+
