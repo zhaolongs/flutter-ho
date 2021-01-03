@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ho/src/pages/home/home_item3_page.dart';
 import 'package:flutter_ho/src/pages/home/home_item_page.dart';
 
 import 'pages/mine/mine_main_page.dart';
@@ -35,10 +36,13 @@ class _HomePageState extends State<HomePage> {
           //不可左右滑动
           physics: NeverScrollableScrollPhysics(),
           children: [
+            //第一个视频列表播放页面
             HomeItemPage(1),
+            //第二个视频列表播放页面
             HomeItemPage(2),
-            HomeItemPage(3),
-            //个人中心页面
+            //第三个文章列表页面
+            HomeItem3Page(),
+            //第四个个人中心页面
             MineMainPage(),
           ],
         ),
