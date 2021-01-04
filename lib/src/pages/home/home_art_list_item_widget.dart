@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ho/src/bean/bean_art.dart';
 
 /// 创建人： Created by zhaolong
 /// 创建时间：Created by  on 2021/1/3.
@@ -11,6 +12,10 @@ import 'package:flutter/material.dart';
 /// 代码清单
 ///代码清单
 class HomeItemArtWidget extends StatefulWidget {
+  final  ArtBean artBean ;
+
+  HomeItemArtWidget({this.artBean});
+
   @override
   _HomeItemArtWidgetState createState() => _HomeItemArtWidgetState();
 }
@@ -46,7 +51,7 @@ class _HomeItemArtWidgetState extends State<HomeItemArtWidget> {
           //第一行的标题
           Container(
             child: Text(
-              "Flutter从0到1第一文章",
+              "${widget.artBean.artTitle}",
               style: TextStyle(
                 //设置文章的粗体
                 fontWeight: FontWeight.w600,
@@ -88,7 +93,7 @@ class _HomeItemArtWidgetState extends State<HomeItemArtWidget> {
                       Container(
                         margin: EdgeInsets.only(top: 8),
                         child: Text(
-                          "今天的知识点是给大家写一下一个列表的基本排版，大家有兴趣可以看看我这写法如何",
+                          "${widget.artBean.artInfo}",
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.grey[600],
