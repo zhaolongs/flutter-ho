@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ho/src/bean/bean_art.dart';
 import 'package:flutter_ho/src/net/dio_utils.dart';
+import 'package:flutter_ho/src/utils/log_utils.dart';
 import 'package:flutter_ho/src/utils/toast_utils.dart';
 
 import 'home_art_list_item_widget.dart';
@@ -37,23 +38,65 @@ class _HomeItem3PageState extends State<HomeItem3Page> {
       ),
       backgroundColor: Color(0XffCDDEEC),
 
-      //下拉刷新
-      body: RefreshIndicator(
-        //懒加载
-        onRefresh: () {
-          return onRefresh();
+      //每一个滑动组件 在滑动时都会发出相应的通知
+      //在这里只监听了滑动结束 的通知
+      //滑动监听
+      body: NotificationListener<ScrollEndNotification>(
+        onNotification: (ScrollNotification notification) {
+          LogUtils.e("滑动结束了了了");
+          //在滑动结束的时候 判断下如果滑动了 2/3数据
+          //就自动加载下一页数据
+          //获取滑动的距离
+          //ScrollMetrics 是保存就滑动相关的信息
+          // pixels
+          ScrollMetrics scrollMetrics = notification.metrics;
+          //获取滑动的距离
+          double pixels = scrollMetrics.pixels;
+          //获取最大滑动的距离
+          double maxPixels = scrollMetrics.maxScrollExtent;
+          //获取滑动的方向
+          AxisDirection axisDirection = scrollMetrics.axisDirection;
+
+          if (pixels >= maxPixels / 3 * 2) {
+            //加载更多
+            loadmore();
+          }
+
+          //返回true 阻止再向上发送通知
+          return true;
         },
-        child: ListView.builder(
-          //列表的个数
-          itemCount: _artBeanList.length,
-          //列表的每个子Item 的样式
-          itemBuilder: (BuildContext context, int index) {
-            ArtBean artBean = _artBeanList[index];
-            return HomeItemArtWidget(artBean: artBean);
+        //下拉刷新
+        child: RefreshIndicator(
+          //懒加载
+          onRefresh: () {
+            return onRefresh();
           },
+          child: ListView.builder(
+            //列表的个数
+            itemCount: _artBeanList.length,
+            //列表的每个子Item 的样式
+            itemBuilder: (BuildContext context, int index) {
+              ArtBean artBean = _artBeanList[index];
+              return HomeItemArtWidget(artBean: artBean);
+            },
+          ),
         ),
       ),
     );
+  }
+
+  ///
+  int _pageIndex = 1;
+  int _pageSize = 10;
+  bool _isLoading = false;
+
+  //加载更多
+  void loadmore() {
+    if (!_isLoading) {
+      _isLoading = true;
+      _pageIndex++;
+      loadingNetData();
+    }
   }
 
   ///异步加载
@@ -74,13 +117,47 @@ class _HomeItem3PageState extends State<HomeItem3Page> {
       ],
     }
      */
-    //发起一个post 请求
+
+    //添加一下分页请求信息
+    Map<String, dynamic> map = new Map();
+    //当前页数
+    map["pageIndex"] = _pageIndex;
+    //每页大小
+    map["pageSize"] = _pageSize;
+
+    //发起一个get 请求
+    // ResponseInfo responseInfo = await DioUtils.instance.getRequest(
+    //   url: HttpHelper.artList,
+    //   queryParameters: map,
+    // );
+    //使用模拟数据
     ResponseInfo responseInfo =
-        await DioUtils.instance.getRequest(url: HttpHelper.artList);
+        await Future.delayed(Duration(milliseconds: 1000), () {
+      List list = [];
+
+      for (int i = 0; i < 10; i++) {
+        list.add({
+          "title": "测试数据$i",
+          "artInfo": "这里是测试数据的简介",
+          "readCount": 100,
+          "pariseCount": 120,
+        });
+      }
+
+      return ResponseInfo(data: list);
+    });
+    //加载结束标识
+    _isLoading = false;
     if (responseInfo.success) {
       List list = responseInfo.data;
-      //清空一下数据
-      _artBeanList = [];
+      //无数据时 更新索引
+      if (list.length == 0 && _pageIndex != 1) {
+        _pageIndex--;
+      }
+      if (_pageIndex == 1) {
+        //清空一下数据
+        _artBeanList = [];
+      }
       list.forEach((element) {
         _artBeanList.add(ArtBean.fromMap(element));
       });
@@ -94,6 +171,8 @@ class _HomeItem3PageState extends State<HomeItem3Page> {
 
   //下拉刷新
   Future<bool> onRefresh() async {
+    //重置页数
+    _pageIndex = 1;
     //记录开始加载的时间
     _preLoadingTime = DateTime.now().microsecond;
     //加载数据
@@ -104,7 +183,7 @@ class _HomeItem3PageState extends State<HomeItem3Page> {
     int flagTime = current - _preLoadingTime;
     //最少显示1秒
     if (flagTime < 1000) {
-      await Future.delayed(Duration(milliseconds: 1000-flagTime));
+      await Future.delayed(Duration(milliseconds: 1000 - flagTime));
     }
     ToastUtils.showToast("已刷新");
     return true;
