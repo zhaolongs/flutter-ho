@@ -19,8 +19,7 @@ class HomeItemDemoPage extends StatefulWidget {
 
 class _HomeItemDemoPageState extends State<HomeItemDemoPage> {
 
-
-  List<String> _list =[
+  List<String> _list = [
     "assets/images/banner1.png",
     "assets/images/banner1.png",
     "assets/images/banner1.png",
@@ -38,14 +37,16 @@ class _HomeItemDemoPageState extends State<HomeItemDemoPage> {
 
       ///填充布局
       body: Container(
-          width: double.infinity,
-          height: double.infinity,
-          child: Column(
-            children: [
-              BannerWidget(imageList: _list,),
-            ],
-          )),
+        width: double.infinity,
+        height: double.infinity,
+        child: Column(
+          children: [
+            BannerWidget(
+              imageList: _list,
+            ),
+          ],
+        ),
+      ),
     );
   }
-
 }
