@@ -48,3 +48,5 @@ Flutter 脚手架 快速开发模版
 *  2021 -01-03  第二十七天 [Flutter从0到1 一个经典的ListView布局排版 -第27讲](https://www.bilibili.com/video/BV1vp4y1B7X1/)
 *  2021 -01-04  第二十八天 [Flutter从0到1 ListView 下拉刷新更新网络数据 -第28讲](https://www.bilibili.com/video/BV1G54y147v6)
 *  2021 -01-05  第二十九天 [Flutter从0到1 开发App 上拉分页加载数据 -第29讲](https://www.bilibili.com/video/BV1ry4y127Ae/)
+
+* 2021 -01-06 第三十天 [Flutter跨平台开发 百万Demo之轮播图](https://www.bilibili.com/video/BV1BU4y1x7ej/)
