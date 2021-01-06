@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ho/src/pages/home/home_item3_page.dart';
 import 'package:flutter_ho/src/pages/home/home_item_page.dart';
 
+import 'pages/demo/home_item_demo_page.dart';
 import 'pages/mine/mine_main_page.dart';
 
 /// 创建人： Created by zhaolong
@@ -39,10 +40,12 @@ class _HomePageState extends State<HomePage> {
             //第一个视频列表播放页面
             HomeItemPage(1),
             //第二个视频列表播放页面
+            HomeItemDemoPage(),
+            //第三个视频列表播放页面
             HomeItemPage(2),
-            //第三个文章列表页面
+            //第四个文章列表页面
             HomeItem3Page(),
-            //第四个个人中心页面
+            //第五个个人中心页面
             MineMainPage(),
           ],
         ),
@@ -65,6 +68,7 @@ class _HomePageState extends State<HomePage> {
         unselectedItemColor: Colors.blueGrey,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "首页"),
+          BottomNavigationBarItem(icon: Icon(Icons.menu), label: "DEMO"),
           BottomNavigationBarItem(icon: Icon(Icons.five_g), label: "发现"),
           BottomNavigationBarItem(icon: Icon(Icons.message), label: "消息"),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: "我的"),
