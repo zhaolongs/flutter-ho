@@ -51,3 +51,4 @@ Flutter 脚手架 快速开发模版
 
 * 2021 -01-06 第三十天 [Flutter跨平台开发 百万Demo之轮播图](https://www.bilibili.com/video/BV1BU4y1x7ej/)
 * 2021 -01-07 第三十一天 [Flutter跨平台开发 百万Demo之轮播图](https://www.bilibili.com/video/BV18z4y167Pj/）
+* 2021 -01-09 第三十二天 [Flutter SliverAppBar 实现可折叠隐藏的头部](https://www.ixigua.com/6915720349015343628/）
