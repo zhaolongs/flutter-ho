@@ -18,7 +18,6 @@ class HomeItemDemoPage extends StatefulWidget {
 }
 
 class _HomeItemDemoPageState extends State<HomeItemDemoPage> {
-
   List<String> _list = [
     "assets/images/banner1.png",
     "assets/images/banner1.png",
@@ -27,26 +26,75 @@ class _HomeItemDemoPageState extends State<HomeItemDemoPage> {
     "assets/images/banner1.png"
   ];
 
+  double _headerOpacity = 0.0;
+
+  //滑动控制器
+  ScrollController _scrollController = new ScrollController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    _scrollController.addListener(() {
+      //获取滑动的距离
+      double offset = _scrollController.offset;
+
+      if(offset<=160){
+        _headerOpacity = offset/160;
+        setState(() {
+
+        });
+      }
+
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Demo"),
-      ),
       backgroundColor: Colors.white,
 
       ///填充布局
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: Column(
-          children: [
-            BannerWidget(
-              imageList: _list,
+      body: NestedScrollView(
+        //绑定滑动控制器
+        controller: _scrollController,
+        //主体内容
+        body: buildBody(),
+        //头部
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return [
+            //折叠
+            SliverAppBar(
+              //值为true时
+              pinned: true,
+              //标题会停留
+              title: Opacity(
+                  opacity: _headerOpacity,
+                  child: Text(
+                "Demo目录 ",
+                style: TextStyle(color: Colors.white),
+              )),
+              //展开的高度
+              expandedHeight: 200,
+              //可折叠隐藏的部分
+              flexibleSpace: FlexibleSpaceBar(
+                background: BannerWidget(
+                  imageList: _list,
+                ),
+              ),
             ),
-          ],
-        ),
+          ];
+        },
       ),
+    );
+  }
+
+  buildBody() {
+    return Container(
+      height: 1990,
+      color: Colors.redAccent,
     );
   }
 }
