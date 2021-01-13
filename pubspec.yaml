@@ -29,6 +29,10 @@ dependencies:
   #偏好设置
   shared_preferences: ^0.5.12+4
 
+  # 饼图
+  flutter_echart: ^1.0.2
+    #path: /Volumes/code/ico/Desktop/code/flutter_app/flutter_echart
+
   # 路径获取
   path_provider: ^1.6.24
   #视频播放
