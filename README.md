@@ -54,3 +54,5 @@ Flutter 脚手架 快速开发模版
 * 2021 -01-09 第三十二天 [Flutter SliverAppBar 实现可折叠隐藏的头部](https://www.ixigua.com/6915720349015343628/）源码在分支 32_sliver_demo 已合并到主分支 main
 
 * 2021 -01-12 第三十三天 [Flutter ScrollView 自动滚动到边界放大显示中间子Widget](https://www.bilibili.com/video/BV1Ky4y1m7RS/）源码在分支 32_sliver_demo 已合并到主分支 main
+* 2021 -01-13 第三十四天 [Flutter ScrollView 自动滚动到边界放大显示中间子Widget 第二部分](https://www.bilibili.com/video/BV12h411276S/)
+* 2021 -01-16 第三十五天 [Flutter 雷达扫描背景效果](https://www.bilibili.com/video/BV11A411H7jE/)
