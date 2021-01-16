@@ -22,15 +22,17 @@ class SignSwiperPage extends StatefulWidget {
 
 class _SignSwiperPageState extends State<SignSwiperPage>
     with SingleTickerProviderStateMixin {
+  //动画控制器
   AnimationController _animationController;
 
   @override
   void initState() {
     super.initState();
 
+    //创建
     _animationController = new AnimationController(
         vsync: this, duration: Duration(milliseconds: 2000));
-
+    //添加到事件队列中
     Future.delayed(Duration.zero, () {
       //动画重复执行
       _animationController.repeat();
@@ -39,6 +41,7 @@ class _SignSwiperPageState extends State<SignSwiperPage>
 
   @override
   void dispose() {
+    //销毁
     _animationController.dispose();
     super.dispose();
   }
@@ -55,7 +58,7 @@ class _SignSwiperPageState extends State<SignSwiperPage>
         //层叠布局
         child: Stack(
           children: [
-            //圆形剪裁
+            //第一层的背景 圆形剪裁
             ClipOval(
               child: Container(
                 width: 200,
@@ -63,23 +66,32 @@ class _SignSwiperPageState extends State<SignSwiperPage>
                 color: Colors.green,
               ),
             ),
-            RotationTransition(
-              turns: _animationController,
-              child: ClipOval(
-                child: Container(
-                  width: 200,
-                  height: 200,
-                  decoration: BoxDecoration(
-                    //扫描渐变
-                    gradient: SweepGradient(colors: [
-                      Colors.white.withOpacity(0.2),
-                      Colors.white.withOpacity(0.6),
-                    ]),
-                  ),
-                ),
-              ),
-            ),
+            //第二层的扫描
+            buildRotationTransition(),
           ],
+        ),
+      ),
+    );
+  }
+
+  RotationTransition buildRotationTransition() {
+    //旋转动画
+    return RotationTransition(
+      //动画控制器
+      turns: _animationController,
+      //圆形裁剪
+      child: ClipOval(
+        //扫描渐变
+        child: Container(
+          width: 200,
+          height: 200,
+          decoration: BoxDecoration(
+            //扫描渐变
+            gradient: SweepGradient(colors: [
+              Colors.white.withOpacity(0.2),
+              Colors.white.withOpacity(0.6),
+            ]),
+          ),
         ),
       ),
     );
