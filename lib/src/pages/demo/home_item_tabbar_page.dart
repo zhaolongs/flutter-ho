@@ -26,6 +26,8 @@ class _HomeItemTabbarPageState extends State<HomeItemTabbarPage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return ListView.builder(
       padding: EdgeInsets.only(top: 10),
       itemCount: 120,

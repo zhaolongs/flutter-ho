@@ -38,9 +38,9 @@ android {
         targetSdkVersion 29
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-        ndk{
-            abiFilters "armeabi-v7a","armeabi-v8a","armeabi"
-        }
+//        ndk{
+//            abiFilters "armeabi-v7a","armeabi-v8a","armeabi"
+//        }
     }
 
     signingConfigs{
