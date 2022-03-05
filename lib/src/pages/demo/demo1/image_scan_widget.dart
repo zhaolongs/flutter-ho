@@ -27,11 +27,10 @@ class _ImageScanWidgetState extends State<ImageScanWidget> {
   int _index = 0;
 
   //滑动控制器
-  PageController _scrollController = new PageController();
+  final PageController _scrollController = new PageController();
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _scrollController.addListener(() {
       //获取滑动距离

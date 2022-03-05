@@ -87,38 +87,38 @@ class _DemoListViewFlagPageState extends State<DemoListViewFlagPage> {
     return Column(
       children: [
         //椭圆裁剪
-        ClipOval(
-          child: Container(
-            //背景
-            color: Colors.blueGrey,
-            //文字标签 按钮
-            child: TextButton(
-              onPressed: () {
-                print("点击");
-                _scrollController.animateTo(
-                  0,
-                  curve: Curves.ease,
-                  duration: Duration(milliseconds: 400),
-                );
-              },
-              child: StreamBuilder<int>(
-                //绑定流控制器
-                stream: _streamController.stream,
-                //初始显示的数据
-                initialData: 0,
-                builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
-                  return Text(
-                    '${snapshot.data}',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 22,
-                        fontWeight: FontWeight.w500),
-                  );
-                },
-              ),
-            ),
+        ElevatedButton(
+          onPressed: () {
+            print("点击");
+            _scrollController.animateTo(
+              0,
+              curve: Curves.ease,
+              duration: Duration(milliseconds: 400),
+            );
+          },
+          child: StreamBuilder<int>(
+            //绑定流控制器
+            stream: _streamController.stream,
+            //初始显示的数据
+            initialData: 0,
+            builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+              return Text(
+                '${snapshot.data}',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.w500),
+              );
+            },
           ),
-        )
+        ),
+        ElevatedButton(onPressed: (){
+          _scrollController.animateTo(
+            55,
+            curve: Curves.ease,
+            duration: Duration(milliseconds: 400),
+          );
+        }, child: Text("55"))
       ],
     );
   }
@@ -190,7 +190,7 @@ class _Demo14ListItemWidgetState extends State<Demo14ListItemWidget> {
 ///ListView 自定义滑动监听回调
 class CustomScrollDelegate extends SliverChildBuilderDelegate {
   //定义滑动回调监听
-  Function(int firstIndex, int lastIndex) ? scrollCallBack;
+  Function(int firstIndex, int lastIndex)? scrollCallBack;
 
   //构造函数
   CustomScrollDelegate(builder, {required int itemCount, this.scrollCallBack})
