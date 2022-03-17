@@ -146,6 +146,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_drag_scale_widget:
+    dependency: "direct dev"
+    description:
+      path: "/Volumes/code/mo_flutter_stu/flutter_drag_scale/flutter_drag_scale_widget"
+      relative: false
+    source: path
+    version: "1.0.1"
   flutter_echart:
     dependency: "direct dev"
     description:
