@@ -39,6 +39,8 @@ Flutter 快速开发模板  目录已适配到 Flutter 2.5版本
 * 2021 -03-11 第五十天 [Flutter App开发 PageView 动画图片浏览器 微动画视觉](https://www.zhihu.com/zvideo/1353261640809287680)[【源码】](https://github.com/zhaolongs/flutter-ho/blob/main/lib/src/pages/demo/demo8/animation_2_pageview_image.dart)
 
 * 2022  -3-16 [Flutter 图片浏览器](https://www.zhihu.com/zvideo/1353261640809287680)[【源码】](https://github.com/zhaolongs/flutter-ho/blob/main/lib/src/pages/demo/demo38/image_show_page.dart)
+* 2022  -3-19 [Flutter LayoutBuilder 布局构建者](https://www.zhihu.com/zvideo/1353261640809287680)[【源码】](https://github.com/zhaolongs/flutter-ho/blob/main/lib/src/pages/demo/demo38/layout_page.dart)
+
 
  ## 3 Demo大集合
  ![图片浏览器](./demoImages/flutter_image_scan.gif)
