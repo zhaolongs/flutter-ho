@@ -44,3 +44,16 @@ Flutter 快速开发模板  目录已适配到 Flutter 2.5版本
 
  ## 3 Demo大集合
  ![图片浏览器](./demoImages/flutter_image_scan.gif)
+
+
+
+
+ 如果你迷茫 不妨来此 每日分享 先积累着再说
+更多Widget 的应用，小编已总结在书中
+* [手机点击查看](https://m.tb.cn/h.f6IsZcl?sm=b5555a ) # [电脑点击查看](https://detail.tmall.com/item.htm?id=658886049139)
+![请添加图片描述](https://img-blog.csdnimg.cn/ed9ecf4aacc84e5cb17d5b486e431083.jpg?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBA5pep6LW355qE5bm06L275Lq6,size_20,color_FFFFFF,t_70,g_se,x_16)
+
+***
+* [手机点击查看](https://item.m.jd.com/product/10040957873690.html?&utm_source=iosapp&utm_medium=appshare&utm_campaign=t_335139774&utm_term=CopyURL&ad_od=share&utm_user=plusmember&gx=RnFjxjUIbWGNztQUp4J3XrJgfXzlaNZ0 ) # [电脑点击查看](https://item.jd.com/13009851.html)
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/0b0016200df2484aa2029c1b20224fee.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA5pep6LW355qE5bm06L275Lq6,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
