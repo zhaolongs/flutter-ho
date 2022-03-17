@@ -17,16 +17,16 @@ import 'image_scan_widget.dart';
 main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: DemoVideoListPage(),
+    home: DemoImageScanPage(),
   ));
 }
 
-class DemoVideoListPage extends StatefulWidget {
+class DemoImageScanPage extends StatefulWidget {
   @override
   _DemoPiePageState createState() => _DemoPiePageState();
 }
 
-class _DemoPiePageState extends State<DemoVideoListPage> {
+class _DemoPiePageState extends State<DemoImageScanPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,23 +36,25 @@ class _DemoPiePageState extends State<DemoVideoListPage> {
         centerTitle: true,
       ),
       //添加一个点击事件
-      body: InkWell(
-        child: Image.asset("assets/images/banner1.png"),
-        //点击回调
-        onTap: () {
-          //定义图片数组
-          List<String> imageList = [
-            "assets/images/banner1.png",
-            "assets/images/banner2.png",
-            "assets/images/banner1.png",
-            "assets/images/banner2.png",
-          ];
-          //打开一个新的页页 图片滑动浏览
-          NavigatorUtils.pushPageByFade(
-            context: context,
-            targPage: ImageScanWidget(imageList:imageList),
-          );
-        },
+      body: Center(
+        child: InkWell(
+          child: Image.asset("assets/images/banner1.png"),
+          //点击回调
+          onTap: () {
+            //定义图片数组
+            List<String> imageList = [
+              "assets/images/banner1.png",
+              "assets/images/banner2.png",
+              "assets/images/banner1.png",
+              "assets/images/banner2.png",
+            ];
+            //打开一个新的页页 图片滑动浏览
+            NavigatorUtils.pushPageByFade(
+              context: context,
+              targPage: ImageScanWidget(imageList:imageList),
+            );
+          },
+        ),
       ),
     );
   }

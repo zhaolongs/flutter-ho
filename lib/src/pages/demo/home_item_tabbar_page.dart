@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ho/src/bean/bean_demo.dart';
 import 'package:flutter_ho/src/utils/log_utils.dart';
 
 /// 创建人： Created by zhaolong
@@ -12,6 +13,11 @@ import 'package:flutter_ho/src/utils/log_utils.dart';
 /// 代码清单
 ///代码清单
 class HomeItemTabbarPage extends StatefulWidget {
+  final List<DemoBean> list;
+
+  const HomeItemTabbarPage({Key? key, required this.list}) : super(key: key);
+
+
   @override
   _HomeItemTabbarPageState createState() => _HomeItemTabbarPageState();
 }
@@ -30,56 +36,61 @@ class _HomeItemTabbarPageState extends State<HomeItemTabbarPage>
 
     return ListView.builder(
       padding: EdgeInsets.only(top: 10),
-      itemCount: 120,
+      itemCount: widget.list.length,
       itemBuilder: (BuildContext context, int index) {
-        return Container(
-          height: 120,
-          child: Row(
-            children: [
-              SizedBox(
-                width: 12,
-              ),
-              //左侧
-              buildLeftColumn(),
-              SizedBox(
-                width: 14,
-              ),
-              //右侧
-              Column(
-                children: [
-                  Text(
-                    "这里是标题",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text(
-                    "这里是简介",
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Text(
-                    "这里是时间",
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-                ],
-              )
-            ],
-          ),
-        );
+        DemoBean demoBean = widget.list[index];
+        return buildContainer(demoBean);
       },
+    );
+  }
+
+  Container buildContainer(DemoBean demoBean) {
+    return Container(
+      height: 120,
+      child: Row(
+        children: [
+          SizedBox(
+            width: 12,
+          ),
+          //左侧
+          buildLeftColumn(),
+          SizedBox(
+            width: 14,
+          ),
+          //右侧
+          Column(
+            children: [
+              Text(
+                "${demoBean.title}",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              Text(
+                "${demoBean.content}",
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              Text(
+                "${demoBean.time}",
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
     );
   }
 
@@ -100,7 +111,7 @@ class _HomeItemTabbarPageState extends State<HomeItemTabbarPage>
         ),
         Container(
           width: 2,
-          height: 104,
+          height: 90,
           color: Colors.blueGrey,
         )
       ],

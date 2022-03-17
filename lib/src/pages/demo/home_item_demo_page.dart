@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ho/src/bean/bean_demo.dart';
 
 import 'banner_widget.dart';
+import 'demo1/demo_image_scan_main_page.dart';
 import 'home_item_tabbar_page.dart';
 
 /// 创建人： Created by zhaolong
@@ -125,10 +127,14 @@ class _HomeItemDemoPageState extends State<HomeItemDemoPage>
     return TabBarView(
       controller: _tabController,
       children: [
-        HomeItemTabbarPage(),
-        HomeItemTabbarPage(),
-        HomeItemTabbarPage()
+        HomeItemTabbarPage(list: list1,),
+        HomeItemTabbarPage(list: [],),
+        HomeItemTabbarPage(list: [],)
       ],
     );
   }
+
+  List<DemoBean> list1 = [
+    DemoBean.name(title: "图片浏览器", page: DemoImageScanPage())
+  ];
 }
