@@ -19,18 +19,19 @@ class LayoutBuilderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
+        child: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            double maxWidth = constraints.maxWidth;
+            double minWidth = constraints.minWidth;
 
-          double maxWidth = constraints.maxWidth;
-          double minWidth = constraints.minWidth;
-
-          double maxHeight = constraints.maxHeight;
-          double minHeight = constraints.minHeight;
-          if(maxWidth>400) {
-            return buildRow();
-          }
-          return buildColumn();
-        },),
+            double maxHeight = constraints.maxHeight;
+            double minHeight = constraints.minHeight;
+            if (maxWidth > 400) {
+              return buildRow();
+            }
+            return buildColumn();
+          },
+        ),
       ),
     );
   }
@@ -40,7 +41,9 @@ class LayoutBuilderPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ElevatedButton(onPressed: () {}, child: Text("右侧按钮")),
-        SizedBox(width: 60,),
+        SizedBox(
+          width: 60,
+        ),
         ElevatedButton(onPressed: () {}, child: Text("左侧按钮")),
       ],
     );
@@ -51,7 +54,9 @@ class LayoutBuilderPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ElevatedButton(onPressed: () {}, child: Text("右侧按钮")),
-        SizedBox(height: 60,),
+        SizedBox(
+          height: 60,
+        ),
         ElevatedButton(onPressed: () {}, child: Text("左侧按钮")),
       ],
     );
