@@ -2,6 +2,8 @@
 
 Flutter 快速开发模板  目录已适配到 Flutter 2.5版本
 
+[Android apk体验](https://www.pgyer.com/KEYn)
+
 ## 1 Android 权限申请
 
 权限申请使用的是  permission_handler: ^9.2.0
