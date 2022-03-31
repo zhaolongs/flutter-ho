@@ -34,6 +34,13 @@ class _DemoAnimatedSwitcherLockPageState
 
   @override
   Widget build(BuildContext context) {
+
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text('Error'),
+      backgroundColor: Colors.black54,
+    ));
+
+
     return Scaffold(
       appBar: AppBar(
         title: Text("测试"),
