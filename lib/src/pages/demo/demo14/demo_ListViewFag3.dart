@@ -121,6 +121,7 @@ class _DemoListViewFlagPageState extends State<DemoListViewFlagPage> {
                 _scrollController.animateTo(offset + 100,
                     duration: Duration(milliseconds: 400),
                     curve: Curves.easeInSine);
+                _streamController.add(_currentIndex);
                 return;
               }
               //当前显示的是第一个Item
@@ -133,6 +134,7 @@ class _DemoListViewFlagPageState extends State<DemoListViewFlagPage> {
                 _scrollController.animateTo(0,
                     duration: Duration(milliseconds: 400),
                     curve: Curves.easeInSine);
+                _streamController.add(_currentIndex);
                 return;
               }
               //向右
