@@ -55,6 +55,7 @@ class _DemoCodeVerificationPageState
                     style: Theme.of(context).textTheme.headline6,
                     decoration: const InputDecoration(
                         hintText: "0",
+                        hintStyle: TextStyle(color:Colors.grey),
                         border: OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.red)),
